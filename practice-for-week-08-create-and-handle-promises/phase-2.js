@@ -1,24 +1,57 @@
 function stretch(timeLeft) {
-  // refactor your code from phase 1
-  // Your code here
+  const timeToComplete = 1000;
+
+  return new Promise((resolve, reject) => {
+    if (timeLeft < timeToComplete) {
+      throw new Error("stretch");
+    }
+
+    setTimeout(() => {
+      resolve(timeLeft - timeToComplete);
+      console.log("done stretching");
+    }, timeToComplete);
+  });
 }
 
 
 function runOnTreadmill(timeLeft) {
-  // refactor your code from phase 1
-  // Your code here
+  const timeToComplete = 500;
+
+  return new Promise((resolve, reject) => {
+    if (timeLeft < timeToComplete) {
+      throw new Error("run on treadmill");
+    }
+
+    setTimeout(() => {
+      resolve(timeLeft - timeToComplete);
+      console.log("done running on treadmill");
+    }, timeToComplete);
+  });
 }
 
 
 function liftWeights(timeLeft) {
-  // refactor your code from phase 1
-  // Your code here
+  const timeToComplete = 2000;
+
+  return new Promise((resolve, reject) => {
+    if (timeLeft < timeToComplete) {
+      throw new Error("lift weights");
+    }
+
+    setTimeout(() => {
+      resolve(timeLeft - timeToComplete);
+      console.log("done lifting weights");
+    }, timeToComplete);
+  });
 }
 
 
 function workout(totalTime) {
-  // refactor your code from phase 1
-  // Your code here
+  stretch(totalTime)
+  .then(runOnTreadmill)
+  .then(liftWeights)
+  .then((timeLeft) => console.log(`done working out with ${timeLeft / 1000} seconds left`))
+  .catch((error) => console.log("Error: you dont have enough time to " + error.message));
 }
 
 /* ============================ TEST YOUR CODE ============================
